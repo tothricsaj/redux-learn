@@ -1,33 +1,35 @@
-/*
- * action types
- */
 
-export const ADD_TODO = 'ADD_TODO';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+const INCREMENT = "INCREMENT"; // define a constant for increment action types
+const DECREMENT = "DECREMENT"; // define a constant for decrement action types
 
-/*
- * other constants
- */
+// define the counter reducer which will increment or decrement the state based on the action it receives
+const counterReducer = (state = 0, action) => {
+    switch (action.type) {
+        case INCREMENT:
+            return (state += 1);
 
-export const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_COMPLETED: 'SHOW_COMPLETED',
-    SHOW_ACTIVE: 'SHOW_ACTIVE'
+        case DECREMENT:
+            return (state -= 1);
+
+        default:
+            return state;
+    }
 };
 
-/*
- * action creators
- */
+// define an action creator for incrementing
+const incAction = () => {
+    return {
+        type: INCREMENT
+    };
+};
 
-export function addTodo(text) {
-    return { type: ADD_TODO, text }
-}
+// define an action creator for decrementing
+const decAction = () => {
+    return {
+        type: DECREMENT
+    };
+};
 
-export function toggleTodo(index) {
-    return { type: TOGGLE_TODO, index }
-}
+// define the Redux store here, passing in your reducers
+const store = Redux.createStore(counterReducer);
 
-export function setVisibilityFilter(filter) {
-    return { type: SET_VISIBILITY_FILTER, filter }
-}
