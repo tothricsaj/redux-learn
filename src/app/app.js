@@ -13,7 +13,9 @@ export default function Main() {
     btn.addEventListener('click', (e) => {
         store.dispatch(getInputAction(inputEl.value));
 
-        let msg = `<p>${store.getState()}</p>`;
+        let current_datetime = new Date();
+        let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
+        let msg = `<p>${formatted_date} -> ${store.getState()}</p>`;
         msgWrapper.insertAdjacentHTML('afterbegin', msg);
         console.log(`%c${store.getState()}`, 'color: orangered; border:1px solid orangered; padding: 5px');
     });
