@@ -1,9 +1,14 @@
 import { GET_INPUT } from "./actions";
 
-export const getInputReducer = (state='Zero input', action) => {
+const DEFAULT_STATE = {
+    input: ',' ,
+    date: new Date()
+};
+
+export const getInputReducer = (state=DEFAULT_STATE, action) => {
     switch (action.type) {
         case GET_INPUT:
-            return state = action.input;
+            return Object.assign({}, state, action.data);
         default:
             return state;
     }

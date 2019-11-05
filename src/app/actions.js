@@ -1,8 +1,11 @@
 export const GET_INPUT = 'GET_INPUT';
 
-export const getInputAction = (txt) => {
+export const getInputAction = (txt, timestamp) => {
     return {
         type: GET_INPUT,
-        input: txt
+        data: {
+            input: txt,
+            date: timestamp
+        }
     }
 };
