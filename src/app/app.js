@@ -6,8 +6,15 @@ export default function Main() {
     console.log('%cHello Redux!!!', 'color: orange; border:1px solid orange; padding: 5px');
 
     let store = createStore(getInputReducer);
+    let inputEl = document.querySelector('.input-wrapper input');
+    let btn = document.querySelector('.input-wrapper button');
+    let msgWrapper = document.querySelector('.msg-wrapper');
 
-    store.dispatch(getInputAction('Kis cica fasza!!!'));
+    btn.addEventListener('click', (e) => {
+        store.dispatch(getInputAction(inputEl.value));
 
-    console.log(`%c${store.getState()}`, 'color: orangered; border:1px solid orangered; padding: 5px');
+        let msg = `<p>${store.getState()}</p>`;
+        msgWrapper.insertAdjacentHTML('afterbegin', msg);
+        console.log(`%c${store.getState()}`, 'color: orangered; border:1px solid orangered; padding: 5px');
+    });
 }
